@@ -1,0 +1,43 @@
+function loadScript_chat(url){
+
+    if (document.getElementById('wcchat_script') == null) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+        script.id = "wcchat_script";
+
+        if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                    init_chat();
+            }
+        };
+    } else {  
+        script.onload = function(){
+                init_chat();
+        };
+    }
+
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+    }
+}
+
+
+function init_chat(){
+    if (typeof (wcchat) !== 'undefined') {
+        wcchat.init({ 
+            accountID: 'CT48', wcchatID: 'b98c38022e9842a69bd500e26a576422', available_agent: true, show_tab: true, initStatus:'contracted', codeArea:'IWC12554', tabTooltip:'Chat Online', tabOffline:'Chat Offline', tabColor:'#135695',tabImageURL:'',automatic_chat:false,automatic_chat_time:20,tabBottom:0,language:'es', tabPosition:'right' 
+        });
+    } 
+}
+
+/*loadScript_chat("https://wcentrix.net/tabhelp/external/wcbox/wcchat.js");*/
+loadScript_chat("https://f.wcentrix.com/tabhelp/external/wcbox-dist/wcchat.min.js?v=1.0");
+var fileref=document.createElement("link");
+fileref.setAttribute("rel", "stylesheet");
+fileref.setAttribute("type", "text/css");
+/*fileref.setAttribute("href", "https://wcentrix.net/tabhelp/external/wcbox/wcchat.css");*/
+fileref.setAttribute("href", "https://f.wcentrix.com/tabhelp/external/wcbox-dist/wcchat.min.css?v=1.0");
+document.getElementsByTagName("head")[0].appendChild(fileref);
